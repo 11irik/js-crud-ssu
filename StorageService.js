@@ -1,25 +1,25 @@
 module.exports = class StorageService {
     
-    #count = 0;
+    #count = '0';
 
     constructor() {
         this.map = new Map()
     }
 
     add(object) {
-        let id = this.#count += 1;
-        this.map.set(id, object);
-        return id;
+        this.#count = String(Number(this.#count) + 1);
+        this.map.set(this.#count, object);
+        return this.#count;
     }
 
     getById(id) {
-        if (typeof id === 'number'){
+        if (typeof id === 'string'){
             if (this.map.has(id)){
                 return this.map.get(id);
             }
         }
         else {
-            throw new Error('The identifier type must be a number!');
+            throw new Error('The identifier type must be a string!');
         }
     }
 

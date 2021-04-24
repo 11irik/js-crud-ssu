@@ -20,8 +20,8 @@ let pair2 = new Pair(key2, value2)
 let id0 = storage.add(value0);
 let id1 = storage.add(pair1);
 let id2 = storage.add(pair2);
-let notExistId = 100;
-let wrongIdType = "2"
+let notExistId = '100';
+let wrongIdType = 2
 
 test('get by id', () => {
     let elementById = storage.getById(id0);
