@@ -30,4 +30,24 @@ module.exports = class StorageService {
     deleteById(id) {
         return this.map.delete(id);
     }
+
+    updateById(id, object){
+        if (typeof id === 'string'){
+            if (typeof object === 'object'){
+                for (let key in this.map.get(id)) {
+                    if (object[key]) {
+                        this.map.get(id)[key] = object[key];
+                    }
+                }
+                return this.map.get(id);
+            }
+            else {
+                throw new Error('The arg type must be an object!');
+            }
+        }
+        else {
+            throw new Error('The identifier type must be a string!');
+        }
+    }
+    
 }
