@@ -72,12 +72,14 @@ test('delete by id', () => {
     expect(storage.getById(id3)).toBeUndefined();
 });
 
-test('delete by wrong id', () => {
+test('delete by non exist id', () => {
     expect(storage.deleteById(notExistId)).toBeFalsy();
 });
 
 test('delete by wrong id', () => {
-    expect(storage.deleteById(wrongIdType)).toBeFalsy();
+    expect(() => {
+        storage.deleteById(wrongIdType);
+    }).toThrow();
 });
 
 test('update by id same objects', () => {

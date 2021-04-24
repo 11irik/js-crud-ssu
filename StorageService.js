@@ -28,7 +28,12 @@ module.exports = class StorageService {
     }
 
     deleteById(id) {
-        return this.map.delete(id);
+        if (typeof id === 'string'){
+            return this.map.delete(id);
+        }
+        else {
+            throw new Error('The identifier type must be a string!');
+        }
     }
 
     updateById(id, object){
