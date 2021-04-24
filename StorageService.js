@@ -49,5 +49,13 @@ module.exports = class StorageService {
             throw new Error('The identifier type must be a string!');
         }
     }
-    
+
+    replaceById(id, object){
+        if (typeof id === 'string'){
+            return this.map.set(id, object);
+        }
+        else {
+            throw new Error('The identifier type must be a string!');
+        }
+    }
 }

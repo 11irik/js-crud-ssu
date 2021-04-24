@@ -91,6 +91,33 @@ test('update by id different objects', () => {
     console.log(updatedPair)
 })
 
+test('update non existence id', () => {
+    expect(storage.updateById(notExistId, triple)).toBeUndefined();
+})
+
+test('update with wrong id type', () => {
+    expect(() => {
+        storage.updateById(wrongIdType, triple);
+    }).toThrow();
+})
+
+test('replace by id the same object', () => {
+    expect(storage.getById(id1)).not.toMatchObject(pair2);
+    storage.replaceById(id1, pair2);
+    expect(storage.getById(id1)).toMatchObject(pair2);
+})
+
+test('replace by id another object', () => {
+    expect(storage.getById(id1)).not.toMatchObject(triple);
+    storage.replaceById(id1, triple);
+    expect(storage.getById(id1)).toMatchObject(triple);
+})
+
+test('replace by id to string', () => {
+    storage.replaceById(id1, value0);
+    expect(storage.getById(id1)).toBe(value0);
+})
+
 test('log get all', () => {
     console.log(storage.getAll())
 })
